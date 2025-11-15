@@ -1,0 +1,9 @@
+{
+    "id" : 1,
+    "name":"cali",
+    "orders" : [
+        {"id":12, "product": "comp"},
+                {"id":1, "product": "mouse"}
+    ]
+
+}

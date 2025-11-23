@@ -1,0 +1,12 @@
+ const isEmailValid = validateEmail();
+
+ function validateEmail() {
+    const emailPattern = /^[^ ]+@[^ ]+\\.[a-z]{2,3}$/;
+    if (!email.value.match(emailPattern)) {
+        setError(email, 'Please enter a valid email address.');
+        return false;
+    } else {
+        setSuccess(email);
+        return true;
+    }
+}

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Blender
+Exec=/home/xudayfe/Downloads/blender-4.5.4-linux-x64/blender
+Comment=
+Terminal=false
+PrefersNonDefaultGPU=false
+Icon=cinnamon-panel-launcher
+Type=Application

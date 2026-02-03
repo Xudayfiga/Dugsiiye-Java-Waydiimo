@@ -47,7 +47,38 @@
 
     <button id="clearHistoryButton">Clear History</button>
 
-    <script src="colorPicker.js"></script>
+    <script>
+
+const colorPicker = document.querySelector('#colorPicker')
+const colorHistory = document.querySelector('#colorHistory')
+const clear = document.querySelector('#clearHistoryButton')
+const colorPreview  = document.querySelector('#colorPreview')
+
+
+colorPicker.addEventListener('input', ()=>{
+    const selected = colorPicker.value;
+
+    colorPreview.style.backgroundColor = selected
+
+    add(selected)
+})
+
+function add(color){
+
+    const li = document.createElement('li')
+    li.textContent = color
+    li.style.color = color
+    colorHistory.appendChild (li)
+
+}
+
+clear.addEventListener('click', clearH)
+
+
+function clearH(){
+   colorHistory.innerHTML = ''
+}
+</script>
 
 </body>
 

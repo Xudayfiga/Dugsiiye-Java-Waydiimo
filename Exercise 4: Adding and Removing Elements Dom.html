@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <button class="a">Add Item</button>
+    <button class="r">Remove Item</button>
+
+
+
+    <script>
+        const add = document.querySelector('.a')
+        const rem = document.querySelector('.r')
+        const list = document.querySelector('#list')
+        add.addEventListener('click', ad)
+        rem.addEventListener('click', remov)
+
+     function ad(){
+
+        const sameey = document.createElement('li')
+        sameey.textContent = 'new'
+    list.appendChild(sameey)
+     }
+
+     function remov(){
+        if(list.lastChild){
+            list.removeChild(list.lastChild)
+        }
+     }
+    </script>
+</body>
+</html>

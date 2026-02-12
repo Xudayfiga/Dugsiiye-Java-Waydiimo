@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="i.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+
+        <nav class="nav-bar">
+            <h1>Welcome</h1>
+        
+
+            <ul class="ul">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+                <div class="bars">
+                <!-- <i class="fa-solid fa-xmark cl"></i> -->
+                <i class="fa-solid fa-bars op" ></i>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+    <section id="Home">
+        <h2>Home SECTION </h2>
+    </section>
+    <section id="about">
+        <h2>aboutT SECTION </h2>
+    </section>
+    <section id="service">
+        <h2>aboutT SECTION </h2>
+    </section>
+    <section id="contact">
+        <h2>aboutT SECTION </h2>
+    </section>
+    </div>
+    <!-- -->
+
+    <script>
+const bars = document.querySelector('.bars')
+const icon = bars.querySelector('i')
+const menu = document.querySelector('.ul')
+
+
+bars.addEventListener('click', ()=>{
+    menu.classList.toggle('active')
+    if (menu.classList.contains('active')) {
+        icon.classList.remove('fa-bars')
+        icon.classList.add('fa-xmark')
+        
+    } else {
+               icon.classList.remove('fa-xmark')
+        icon.classList.add('fa-bars')
+        
+    }
+})
+
+// bars.addEventListener('click', ()=>{
+//     menu.classList.toggle('active')
+//     if (menu.classList.contains('active')) {
+// icon.classList.remove('fa-bars')
+//         icon.classList.add('fa-xmark')
+        
+//     } else {
+//         icon.classList.remove('fa-xmark')
+//         icon.classList.add('fa-bars')
+//     }
+// })
+    </script>
+</body>
+
+</html>

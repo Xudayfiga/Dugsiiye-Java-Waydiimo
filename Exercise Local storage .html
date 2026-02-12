@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="k.css">
+</head>
+<body>
+    <div class="cont">
+    <div class="kor">
+        <h1>Simple</h1>
+        <input type="text" id="text">
+        <input type="text" id="url" placeholder="Image url">
+        <textarea name="" id="textArea" placeholder="Write"></textarea>
+        <button id="btn">Add Post</button>
+
+</div>
+
+
+
+    </div>
+
+
+    <div class="hoos">
+    <h1>All posts</h1>
+    <h2 id="h2"></h2>
+    <img src="" alt="" id="img">
+
+    <p id="p"></p>
+
+
+    <button id="edit">Edit</button>
+        <button id="Delete">Delete</button>
+</div>
+
+<script >const itext = document.querySelector("#text");
+const url = document.querySelector("#url");
+const textAreaInput = document.querySelector("#textArea");
+const addBtn = document.querySelector("#btn");
+
+const h2 = document.querySelector("#h2");
+const displayImg = document.querySelector("#img");
+const displayPara = document.querySelector("#p");
+
+const editBtn = document.querySelector("#edit");
+const deleteBtn = document.querySelector("#Delete");
+
+// 
+
+
+
+window.addEventListener('load', ()=>{
+
+const post = JSON.parse(localStorage.getItem('post'))
+
+    h2.textContent = post.title || ''
+    displayImg.src  =  post.img || ''
+    displayPara.textContent = post.textArea
+})
+
+addBtn.addEventListener('click', ()=>{
+
+    const post={
+        title : itext.value,
+        textArea: textAreaInput.value,
+        img: url.value
+    }
+
+const hel =  itext.value;
+    h2.innerHTML = hel
+displayImg.src = url.value
+
+displayPara.innerHTML = textAreaInput.value 
+
+
+localStorage.setItem('post', JSON.stringify(post))
+
+})
+
+
+deleteBtn.addEventListener('click',()=>{
+    h2.innerHTML = ''
+displayImg.src =''
+displayPara.innerHTML = ''
+
+localStorage.removeItem("post")
+})
+
+
+editBtn.addEventListener("click", () => {
+    const post = JSON.parse(localStorage.getItem("post")) || {};
+
+    let newTitle = prompt("Bedel title-ka:", post.title || "");
+    let newImg = prompt("Gali URL cusub:", post.img || "");
+    let newText = prompt("Bedel qoraalka:", post.text || "");
+
+    if (newTitle !== null) post.title = newTitle;
+    if (newImg !== null) post.img = newImg;
+    if (newText !== null) post.text = newText;
+
+    h2.textContent = post.title;
+    displayImg.src = post.img;
+    displayPara.textContent = post.text;
+
+    localStorage.setItem("post", JSON.stringify(post));
+});</script>
+</body>
+</html>

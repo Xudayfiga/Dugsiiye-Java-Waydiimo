@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="j.css">
+</head>
+
+<body>
+
+    <div class="cont">
+        <div class="org">
+
+            <h1>Language Translator</h1>
+
+            <form action="" id="form">
+                <label for=""> From: </label> <br>
+
+                <select name="" id="fLang">
+                    <!-- <option value="" id="fOpt">Detect language</option> -->
+                </select> <br>
+
+                <label for=""> To: </label><br>
+
+                <select name="" id="toLang">
+                    <!-- <option value="" id="tOpt">Detect language</option> -->
+                </select> <br>
+
+                <h2>Text to translate</h2>
+
+                <textarea name="" id="translateText"></textarea>
+
+            </form>
+
+            <button id="btn">Translate</button>
+        </div>
+
+        <div class="result">
+            <h3>Tranlated Text</h3>
+            <p id="p"></p>
+        </div>
+
+
+    </div>
+
+    <script>
+        const form = document.querySelector('#form')
+const fLang = document.querySelector('#fLang')
+const toLang = document.querySelector('#toLang')
+const textArea = document.querySelector('#translateText')
+const btn = document.querySelector('#btn')
+const p = document.querySelector('#p')
+
+
+btn.addEventListener('click', shaqoGal)
+
+
+async function shaqoGal() {
+	const fLang = document.querySelector('#fLang').value
+const toLang = document.querySelector('#toLang').value
+const p = document.querySelector('#p')
+
+
+
+	const tr = textArea.value
+// console.log(tr)
+const url = `https://microsoft-translator-text.p.rapidapi.com/translate?api-version=3.0&from=${fLang}&to=${toLang}`;
+const options = {
+	method: 'POST',
+	headers: {
+		'x-rapidapi-key': '76f2d68f7bmsh469a508f64cca3ap1b5defjsnc57155f36e58',
+		'x-rapidapi-host': 'microsoft-translator-text.p.rapidapi.com',
+		'Content-Type': 'application/json'
+	},
+	body: [
+		{
+			Text: 'I would really like to drive your car around the block a few times.'
+		}
+	]
+};
+
+try {
+	const responsei = await fetch(url, options);
+	const resulti = await responsei.json();
+	console.log(resulti);
+
+	p.innerHTML = resulti
+} catch (error) {
+	console.error(error);
+}
+	
+}
+
+nme()
+
+async function nme() {
+	const url = 'https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0';
+	const options = {
+		method: 'GET',
+		headers: {
+			'x-rapidapi-key': '76f2d68f7bmsh469a508f64cca3ap1b5defjsnc57155f36e58',
+			'x-rapidapi-host': 'microsoft-translator-text.p.rapidapi.com'
+		}
+	};
+
+	try {
+
+		
+		const response = await fetch(url, options);
+		const result = await response.json();
+		console.log(result);
+		const language = result.translation
+		for (const key in language) {
+
+
+			const lName = language[key].name;
+			const fop = document.querySelector('#fOpt')
+			const top = document.querySelector('#tOpt')
+
+			let optionO = `<option value="${key}">${lName}</option>`
+		let optionT = `<option value="${key}">${lName}</option>`
+
+
+
+			fLang.innerHTML += optionO
+			toLang.innerHTML += optionT
+
+			
+
+
+
+		}
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+
+
+
+
+    </script>
+</body>
+
+</html>

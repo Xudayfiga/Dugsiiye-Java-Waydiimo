@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Video Player</title>
+ <style>body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d1117;
+  font-family: Arial, sans-serif;
+}
+
+/* Main Player Box */
+.music-player {
+  width: 750px;
+  background: #111;
+  border: 2px solid #00ff00;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+}
+
+/* Video */
+video {
+  width: 100%;
+  display: block;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background: #222;
+  cursor: pointer;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #00ff00;
+}
+
+/* Controls Sections */
+.controls,
+.additional-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+  background: #161b22;
+}
+
+/* Buttons */
+.control-btn {
+  background: transparent;
+  border: 1px solid #00ff00;
+  color: #00ff00;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+.control-btn:hover {
+  background: #00ff00;
+  color: #000;
+}
+
+/* Volume + Range */
+input[type="range"] {
+  cursor: pointer;
+  accent-color: #00ff00;
+}
+
+/* Speed Select */
+select {
+  background: #000;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+/* Icons */
+i {
+  pointer-events: none;
+}</style>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="music-player">
+
+    <!-- Video -->
+    <video id="video" src=""></video>
+
+    <!-- Progress Bar -->
+    <div class="progress-container" id="progress-container">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- Main Controls -->
+    <div class="controls">
+      <button id="prev" class="control-btn">
+        <i class="fas fa-step-backward"></i>
+      </button>
+
+      <button id="play" class="control-btn">
+        <i class="fas fa-play"></i>
+      </button>
+
+      <button id="next" class="control-btn">
+        <i class="fas fa-step-forward"></i>
+      </button>
+    </div>
+
+    <!-- Additional Controls -->
+    <div class="additional-controls">
+
+      <div class="volume-container">
+        <i class="fas fa-volume-down"></i>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+      </div>
+
+      <div class="speed-container">
+        <i class="fas fa-tachometer-alt"></i>
+        <select id="speed">
+          <option value="0.5">0.5x</option>
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2x</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>const video = document.getElementById("video");
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const progressContainer = document.getElementById("progress-container");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+const speed = document.getElementById("speed");
+const playIcon = playBtn.querySelector("i");
+
+let songIndex = 0;
+let isPlaying = false;
+let speedx = 1;
+const vid = [
+
+    
+'1.webm',
+'2.webm',
+'2026-02-16-144755.webm'
+
+]
+function loadv(i) {
+video.src = vid[i]
+video.load()   
+
+}
+loadv(songIndex)
+// loadv()
+
+playBtn.addEventListener('click', ()=>{
+    if (isPlaying) {
+       pause()
+    } else {
+        play() 
+    }
+} )
+
+    function play() {
+    playBtn.querySelector('i').classList.remove('fa-play');
+    playBtn.querySelector('i').classList.add('fa-pause');
+video.play()
+    isPlaying = true;
+}    
+
+function pause() {
+  playBtn.querySelector('i').classList.add('fa-play');
+    playBtn.querySelector('i').classList.remove('fa-pause');
+    video.pause()
+    isPlaying= false
+}
+
+function setProgress(e) {
+
+  const width = progressContainer.clientWidth
+  const clickX = e.offsetX
+  const duration = video.duration
+  video.currentTime = (clickX / width) * duration
+}
+nextBtn.addEventListener("click", () => {
+    
+  songIndex++;
+  if (songIndex >= vid.length) {
+    songIndex = 0;
+  }
+  loadv(songIndex);
+  play();
+});
+
+prevBtn.addEventListener("click", () => {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = vid.length - 1;
+  }
+  loadv(songIndex);
+  play();
+});
+
+progressContainer.addEventListener('click', setProgress)
+
+
+//
+
+
+
+
+
+
+video.addEventListener("timeupdate", () => {
+  const percent = (video.currentTime / video.duration) * 100;
+  progress.style.width = percent + "%";
+});
+
+
+progressContainer.addEventListener("click", (e) => {
+  const width = progressContainer.clientWidth;
+  const clickX = e.offsetX;
+  const duration = video.duration;
+  video.currentTime = (clickX / width) * duration;
+});</script>
+</body>
+</html>
+Transportation
+Citizen Identity
+Health

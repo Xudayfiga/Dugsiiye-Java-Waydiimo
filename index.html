@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="g.css">
+    <style>
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.logo span {
+    color: #2dd4bf;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #2dd4bf;
+}
+
+.toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    transition: 0.3s;
+}
+
+
+@media (max-width: 768px) {
+    .toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: -100%;
+        top: 70px;
+        background-color: #fff;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        transition: 0.5s ease-in-out;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .hero-btn {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-koow,
+    .btn-laba {
+        width: 100%;
+    }
+
+    .feature {
+        padding: 60px 20px;
+    }
+
+    .featureDiv h2 {
+        font-size: 1.8rem;
+    }
+
+    .footerg {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerone ul li a:hover {
+        padding-left: 0;
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .inputCont {
+        flex-direction: column;
+    }
+
+    .btnJ {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 968px) {
+    .containerA {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .aboutli li {
+        text-align: left;
+    }
+
+    .about-content h2 {
+        font-size: 2rem;
+    }
+}
+
+.hero {
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: url('https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(68, 113, 23, 0.262);
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 20px;
+}
+
+.hero-text span {
+    color: #2dd4bf;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: #cbd5e1;
+}
+
+.hero-btn {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-koow {
+    background: #2dd4bf;
+    color: #0f172a;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-laba {
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+
+
+.about-section {
+    padding: 80px 10%;
+    background-color: #fff;
+}
+
+.containerA {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.aboutIm {
+    flex: 1;
+}
+
+.aboutIm img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.aboutIm img:hover {
+    transform: scale(1.02);
+}
+
+.about-content {
+    flex: 1;
+}
+
+.sub-title {
+    color: #2dd4bf;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: #0f172a;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-content p {
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.aboutli {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.aboutli li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.aboutli li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2dd4bf;
+    font-weight: bold;
+}
+
+.btn-about {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #0f172a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-about:hover {
+    background-color: #2dd4bf;
+    transform: translateY(-3px);
+}
+
+
+
+
+.feature {
+    padding: 100px 5%;
+    background-color: #f8fafc;
+    text-align: center;
+}
+
+.featureDiv h2 {
+    font-size: 2.5rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.underline {
+    width: 80px;
+    height: 4px;
+    background-color: #2dd4bf;
+    margin: 0 auto 50px;
+    border-radius: 2px;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+
+.card .i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* RESPO */
+
+@media (max-width: 768px) {}
+
+.footer {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 60px 5% 20px;
+    font-family: sans-serif;
+}
+
+.footerg {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footerone {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footerone h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.footerone h3 span {
+    color: #2dd4bf;
+}
+
+.footerone h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #2dd4bf;
+    position: relative;
+}
+
+.footerone p {
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.footerone ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerone ul li {
+    margin-bottom: 12px;
+}
+
+.footerone ul li a {
+    text-decoration: none;
+    color: #94a3b8;
+    transition: 0.3s;
+}
+
+.footerone ul li a:hover {
+    color: #2dd4bf;
+    padding-left: 5px;
+}
+
+.footerone p i {
+    margin-right: 10px;
+    color: #2dd4bf;
+}
+
+
+.a {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #1e293b;
+}
+
+.a p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+#localsto {
+    padding: 20px;
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+}
+
+#uInput {
+    width: 80%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+#uInput:focus {
+    border-color: #00adb5;
+}
+
+.btnJ, .btn-cl {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+.btnJ {
+    background-color: #00adb5;
+    color: white;
+}
+
+.btnJ:hover {
+    background-color: #008f95;
+}
+
+.btn-cl {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-cl:hover {
+    background-color: #e60000;
+}
+
+#local-output {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #00adb5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 480px) {
+    #uInput {
+        width: 100%;
+    }
+    
+    .btnJ, .btn-cl {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 21px;
+    align-items: center;
+    box-shadow: 0 5px 7px rgba(0,0,0,0.05);
+    
+}
+
+.task button{
+    background-color: #ff4d4d;
+    padding: 7px 13px;
+    font-size: 13px;
+}
+.nav-btn{
+    padding: 7px 7px;
+    text-align: center;
+    background-color: #00adb5;
+
+}
+
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 100; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  
+}
+
+.modal-conte {
+  background-color: white;
+  margin: 10% auto;
+  padding: 30px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-x {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.ifi{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; 
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+}
+
+
+.api {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.api h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+#loadApi {
+    width: 100%;
+    padding: 14px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#loadApi:hover {
+    background-color: #4338ca;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+#api-output {
+    margin-top: 20px;
+    text-align: left;
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 50px;
+    border: 1px inset #f1f1f1;
+}
+
+@media (max-width: 500px) {
+    .api {
+        width: 90%;
+        margin: 15px auto;
+        padding: 20px;
+    }
+    
+    #loadApi {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">My<span>School</span></a>
+        </div>
+        
+        <div class="toggle" id="mobileM">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="nav-btn btn-main" id="openBtn">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div id="lgModal" class="modal">
+  <div class="modal-conte">
+    <span id="closeBtn" class="close-x">&times;</span>
+    <h3>Soo Gal</h3>
+    
+    <form id="loginFor">
+      <input type="text" id="username" placeholder="Magaca" class="ifi">
+      <input type="tel" id="phone" placeholder="Lambarka" class="ifi">
+      <input type="password" id="password" placeholder="Password-ka" class="ifi">
+      <button type="submit" class="btn-submit">Enter</button>
+    </form>
+  </div>
+</div>
+    <main>
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Baro Hadda, <span>Hoggaami</span> Berri</h1>
+                <p>Dugsigan waxaa aad ka helaysaa waxbarasho tayo leh oo ku dhisan aqoon iyo farsamo casri ah.</p>
+                <div class="hero-btn">
+                    <a href="#" class="btn-koow">Ku soo biir</a>
+                    <a href="#" class="btn-laba">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+        </main>
+
+<div class="api">
+    <h3>API Tasks</h3>
+    <button id="loadApi">Load API Tasks</button>
+    <div id="api-output"></div>
+
+  </div>
+
+    <section class="feature">
+        <div class="container">
+            <div class="featureDiv">
+                <h2>Waxa aad naga helayso arday!</h2>
+            </div>
+            
+            <div class="featuresGrid">
+                <div class="card">
+               
+                    <h3>Macalimiin Khibrad Leh</h3>
+                    <p>Macalimiin leh khibrad aad u dheer.</p>
+                </div>
+
+                <div class="card">
+                  
+                    <h3>Maktabado</h3>
+                    <p>Maktabado aad loo diyaariyay waxna aad ku baranayso, sidoo kalena ku nasanaysid.</p>
+                </div>
+
+                <div class="card">
+                    <h3> Arday aad midawdaan</h3>
+                    <p>Ardayd aad si fudud iskula jaanqaadi doontaan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  -->
+
+
+
+    <section class="about-section">
+
+
+    <div class="containerA">
+
+        <div class="aboutIm">
+
+            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80" alt="">
+
+        </div>
+
+        <div class="about-content">
+            <span class="sub-title">Nagu Saabsan</span>
+            <h2>Dugsi Tayo Waxbarasho leh</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui fugiat repudiandae quaerat, ex numquam modi inventore cumque provident dignissimos dolore reprehenderit ut maxime aliquam consequuntur sed velit asperiores deleniti adipisci.</p>
+            <ul class="aboutli">
+                <li> Macalimiin khibrad sare leh</li>
+                <li> Jawi waxbarasho oo ku haboon</li>
+                <li> Maktabado casri ah</li>
+            </ul>
+            <a href="#" class="btn-about">Learn more</a>
+        </div>
+    </div>
+</section>
+
+
+<section id="localsto">
+
+ <h1>Task Manager</h1>
+
+  <h3>Local Tasks</h3>
+  <input type="text" id="uInput" placeholder="Add local task">
+  <button class="btnJ">Add Local Task</button>
+  <button class="btn-cl">Clear Local Tasks</button>
+  <div id="local-output"></div>
+
+
+</section>
+
+
+
+<footer class="footer">
+
+    <div class="footerg">
+
+        <div class="footerone">
+            <h3><span>Iskuulkeenna</span></h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam quod amet laborum corporis illo veritatis libero odio autem officia saepe eius quam velit in at, vero, veniam odit aperiam possimus.</p>
+        </div>
+
+        <div class="footerone">
+            <h4>Links Muhiim Ah</h4>
+            <ul>
+                <li><a href="#">Hoyga</a></li>
+                <li><a href="#">Adeegyada</a></li>
+                <li><a href="#">Nagu Saabsan</a></li>
+                <li><a href="#">Galley</a></li>
+            </ul>
+        </div>
+
+        <div class="footerone">
+            <h4>Contact us</h4>
+            <p> Bosaso, Bari, Somalia</p>
+            <p>📞 +252 61 XXX XXXX</p>
+        </div>
+
+    </div>
+    <div class="a">
+        <p>&copy; 2026 Dhammaan xuquuqdu waa dhowrantahay.</p>
+    </div>
+</footer>
+
+
+<script>
+const modal = document.getElementById('lgModal');
+const openBtn = document.getElementById('openBtn');
+const closeBtn = document.getElementById('closeBtn');
+const loginForm = document.getElementById('loginFor');
+
+// Furitaanka
+openBtn.onclick = () => modal.style.display = "block";
+
+// Xiritaanka
+closeBtn.onclick = () => modal.style.display = "none";
+
+// Hubinta "If"
+loginForm.onsubmit = (e) => {
+  e.preventDefault();
+  const name = document.getElementById('username').value;
+  const tel = document.getElementById('phone').value;
+  const pass = document.getElementById('password').value;
+
+  if (name && tel && pass) {
+    alert("Waa lagu guuleystay!");
+    modal.style.display = "none";
+  } else {
+    alert("Fadlan buuxi meelaha bannaan!");
+  }
+};
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const localInput = document.querySelector('#uInput');
+  const addLocalBtn = document.querySelector('.btnJ');
+  const clearLocalBtn = document.querySelector('.btn-clear');
+  const localDisplay = document.querySelector('#local-output');
+
+  let localTasks = JSON.parse(localStorage.getItem("localTasks")) || [];
+
+  showLocalTasks();
+
+  addLocalBtn.addEventListener("click", () => {
+    const value = localInput.value.trim();
+    if (!value) return;
+
+    localTasks.push(value);
+    localStorage.setItem("localTasks", JSON.stringify(localTasks));
+    localInput.value = "";
+    showLocalTasks();
+  });
+
+  clearLocalBtn.addEventListener("click", () => {
+    localTasks = [];
+    localStorage.setItem("localTasks", JSON.stringify(localTasks));
+    showLocalTasks();
+  });
+
+  function showLocalTasks() {
+    localDisplay.innerHTML = "";
+    localTasks.forEach((task, index) => {
+      const div = document.createElement("div");
+      div.className = "task";
+
+      const p = document.createElement("p");
+      p.textContent = task;
+
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "Delete";
+      delBtn.addEventListener("click", () => {
+        localTasks.splice(index, 1);
+        localStorage.setItem("localTasks", JSON.stringify(localTasks));
+        showLocalTasks();
+      });
+
+      div.appendChild(p);
+      div.appendChild(delBtn);
+      localDisplay.appendChild(div);
+    });
+  }
+
+
+
+});
+
+
+
+
+const loadApiBtn = document.getElementById('loadApi');
+const apiOutput = document.getElementById('api-output');
+
+loadApiBtn.addEventListener('click', function() {
+    apiOutput.innerHTML = "Pending";
+
+    fetch('j.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("ERRRRRROOOR");
+            }
+            return response.json();
+        })
+        .then(data => {
+            apiOutput.innerHTML = ""; 
+            
+            data.forEach(item => {
+                const div = document.createElement('div');
+                
+                div.innerHTML = `
+                    <strong>ID:</strong> ${item.id} <br>
+                  
+                `;
+                apiOutput.appendChild(div);
+            });
+        })
+        .catch(error => {
+            apiOutput.innerHTML = "Errroorr: " + error.message;
+        });
+});</script>
+</body>
+</html>

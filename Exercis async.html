@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fetch(){
+            return new Promise(function(resolve, reject){
+
+                setTimeout(() => {                    const Bismillaah = false
+
+
+                    if (Bismillaah) {
+                    
+                      resolve(  {id:1,  name:"ali"})
+                        
+                    } else {
+                        reject('failed cabdoow')
+                        
+                    }
+                    
+                }, 3000);
+
+
+            })
+        }
+
+
+        async function display() {
+
+            try {
+                const macmiil = await fetch()
+                console.log(macmiil)
+            } catch (error) {
+                console.error("error", error)
+                
+            }
+            
+        }
+
+display()
+
+
+
+
+
+
+    </script>
+</body>
+</html>
